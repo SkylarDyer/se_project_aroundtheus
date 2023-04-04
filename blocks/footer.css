@@ -11,3 +11,14 @@ font-size: 18px;
 line-height: 22px;
 color: #545454;
 }
+
+@media screen and (max-width: 480px) {
+.footer {
+    width: 282px;
+  }
+
+  .footer__copyright {
+    margin-top: 48px;
+    margin-bottom: 36px;
+  }
+}
