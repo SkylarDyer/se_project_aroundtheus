@@ -6,7 +6,6 @@
 @import url(../blocks/profile.css);
 @import url(../blocks/footer.css);
 
-
 @media screen and (max-width: 480px) {
   .profile {
     flex-direction: column;
@@ -15,12 +14,19 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    margin-top: 26px;
     justify-content: center;
   }
 
   .profile__description {
     width: 100%;
     text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .profile__image {
+    width: 168px;
+    height: 168px;
   }
 
   .profile__add-button {
@@ -28,11 +34,21 @@
     width: 100%;
   }
 
-  .footer{
+  .profile__title {
+    font-family: "Inter", sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-right: 10px;
+  }
+
+  .footer {
     width: 282px;
   }
 
-  .footer__copyright{
+  .footer__copyright {
     margin-top: 48px;
     margin-bottom: 36px;
   }
