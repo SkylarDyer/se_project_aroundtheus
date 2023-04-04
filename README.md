@@ -4,18 +4,17 @@
 
 * Intro  
 * Figma  
-* Images  
+* GitHub  
   
 **Intro**
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+This project was designed to better practice the grid system while further understanding advanced HTML and CSS concepts such as media queries that alter the project's size based on different screen sizes.
+
+
+**Figma**
+
+For Around The U.S., I sourced all images and vector designs from the Figma page, which included image sizing, fonts, margin widths, and detailed how the finished project should look.
+
+**GitHub**
+
+The link to the finished project on [GitHub] (https://github.com/skylarlol/se_project_aroundtheus)

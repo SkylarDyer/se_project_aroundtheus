@@ -54,3 +54,7 @@
     width: 21px;
     border: none;
   }
+
+  .card__like-button:hover{
+    background: transparent url(../images/like-active.svg) center no-repeat;
+  }
