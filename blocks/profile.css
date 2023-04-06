@@ -22,7 +22,6 @@
 }
 
 .profile__edit-button:hover {
-  background: transparent url(../images/edit-button-active.svg) center no-repeat;
   opacity: 0.6;
 }
 
@@ -37,7 +36,6 @@
 }
 
 .profile__add-button:hover {
-  background: transparent url(../images/add-button-active.svg) center no-repeat;
   opacity: 0.6;
 }
 
@@ -90,9 +88,11 @@
   .profile__description {
     width: 100%;
     text-align: center;
+    margin-top: 14px;
     margin-bottom: 36px;
     font-size: 14px;
     line-height: 27px;
+    padding: 0;
   }
 
   .profile__image {

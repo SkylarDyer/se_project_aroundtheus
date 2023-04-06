@@ -17,4 +17,4 @@ For Around The U.S., I sourced all images and vector designs from the Figma page
 
 **GitHub**
 
-The link to the finished project on [GitHub] (https://github.com/skylarlol/se_project_aroundtheus)
+The link to the finished project on [GitHub] (https://skylarlol.github.io/se_project_aroundtheus/)
