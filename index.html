@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Skylar Dyer" />
-    <meta
-      name="description"
-      content="Landing site for Practicum's Coffee Shop"
-    />
+    <meta name="description" content="" />
     <title>Around the U.S.</title>
     <link href="./pages/index.css" rel="stylesheet" />
     <link rel="icon" href="favicon.ico" />
@@ -40,8 +37,7 @@
           <button class="profile__add-button" type="button"></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list">
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <footer class="footer page__section">
@@ -50,9 +46,13 @@
     </div>
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close" id="profile-close-button" type="button"></button>
+        <button
+          class="modal__close"
+          id="profile-close-button"
+          type="button"
+        ></button>
         <h1 class="modal__heading">Edit profile</h1>
-        <form class="modal__form">
+        <form class="modal__form" id="edit-profile-form">
           <input
             class="modal__input modal__form-title"
             type="text"
@@ -71,12 +71,47 @@
         </form>
       </div>
     </div>
+    <div class="modal" id="card-edit-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="profile-close-button"
+          type="button"
+        ></button>
+        <h1 class="modal__heading">New Place</h1>
+        <form class="modal__form" id="add-card-form">
+          <input
+            class="modal__input modal__form-title"
+            type="text"
+            name="title"
+            placeholder="Title"
+            required
+          />
+          <input
+            class="modal__input modal__form-description"
+            type="text"
+            name="link"
+            placeholder="Image Link"
+            required
+          />
+          <button class="modal__button" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="modal-preview-image">
+      <div class="modal__container modal__container-image">
+          <button class="modal__close" type="button"></button>
+          <img class="modal__card-image_preview" src="#" alt="" />
+          <p class="modal__card-image_title"></p>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
         <div class="card__description">
-          <h2 class="card__title"></h2>
+          <h3 class="card__title"></h3>
           <button class="card__like-button" type="button"></button>
+          <button class="card__delete-button" type="button"></button>
         </div>
       </li>
     </template>
