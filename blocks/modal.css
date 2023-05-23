@@ -140,13 +140,13 @@
   flex-direction: column;
 }
 
-.modal__card-image_preview {
+.modal__container-image_preview {
   width: 100%;
   max-width: 75vw;
   max-height: 75vh;
 }
 
-.modal__card-image_title {
+.modal__container-image_title {
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-size: 12px;
   font-weight: 400;
