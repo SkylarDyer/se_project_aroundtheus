@@ -85,8 +85,8 @@ function getCardElement(cardData) {
     cardElement.remove();
   });
 
-  const previewImgModal = document.querySelector(".modal__container-image_preview");
-  const previewImgTitle = document.querySelector(".modal__container-image_title");
+  const previewImgModal = document.querySelector(".modal__container-image-preview");
+  const previewImgTitle = document.querySelector(".modal__container-image-title");
   cardImageEl.addEventListener("click", () => {
     previewImgModal.setAttribute("src", cardImageEl.getAttribute("src"));
     previewImgModal.alt = cardData.name;
