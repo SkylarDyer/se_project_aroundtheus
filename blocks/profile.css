@@ -21,6 +21,7 @@
   cursor: pointer;
   margin-left: 18px;
   margin-top: 14px;
+  transition: 0.2s;
 }
 
 .profile__edit-button:hover {
@@ -35,6 +36,7 @@
   border: 2px solid #ffffff;
   border-radius: 2px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .profile__add-button:hover {

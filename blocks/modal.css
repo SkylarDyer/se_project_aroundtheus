@@ -127,8 +127,9 @@
   }
 }
 
-.modal__container-image {
+.modal__container_content_image {
   display: flex;
+  max-width: 40%;
   align-items: flex-start;
   background-color: transparent;
   font-size: 12px;
@@ -140,13 +141,13 @@
   flex-direction: column;
 }
 
-.modal__container-image-preview {
+.modal__image-preview {
   width: 100%;
   max-width: 75vw;
   max-height: 75vh;
 }
 
-.modal__container-image-title {
+.modal__image-title {
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-size: 12px;
   font-weight: 400;

@@ -10,6 +10,7 @@
   display: flex;
   height: 282px;
   width: 282px;
+  cursor: pointer;
 }
 
 .card__description {
@@ -41,6 +42,7 @@
   width: 21px;
   border: none;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .card__like-button_active {
@@ -53,6 +55,7 @@
 
 .card__like-button:hover {
   opacity: 0.5;
+  /* transition: 0.5s; */
 }
 
 .card__delete-button {
@@ -64,6 +67,7 @@
   position: absolute;
   left: 90%;
   bottom: 90%;
+  transition: 0.5s;
 }
 
 .card__delete-button:hover{
