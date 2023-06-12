@@ -55,10 +55,19 @@ const previewImgBtn = previewImgModal.querySelector(".modal__close");
 
 function closePopUp(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeByEsc);
 }
 
 function openPopUp(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeByEsc);
+}
+
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".modal_opened");
+    closePopUp(openedPopup);
+  }
 }
 
 cardAddButton.addEventListener("click", () => openPopUp(cardEditModal));
@@ -101,7 +110,7 @@ function getCardElement(cardData) {
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
- 
+
   return cardElement;
 }
 
@@ -123,6 +132,50 @@ function openEditProfileModal() {
   openPopUp(profileEditModal);
 }
 
+function handleEsc(e, modal) {
+  if (e.key === "Escape") {
+    closePopUp(modal);
+  }
+}
+
+function handleMouseDown(e, modal) {
+  handleClickOutsideCard(e, modal);
+}
+
+handleClickOutsideProfile();
+function handleClickOutsideProfile(modal) {
+  profileEditModal.addEventListener("mousedown", (e) => {
+    if (
+      e.target.classList.contains("modal") ||
+      e.target.classList.contains("modal__close")
+    ) {
+      closePopUp(profileEditModal);
+    }
+  });
+}
+handleClickOutsideCard();
+function handleClickOutsideCard(modal) {
+  cardEditModal.addEventListener("mousedown", (e) => {
+    if (
+      e.target.classList.contains("modal") ||
+      e.target.classList.contains("modal__close")
+    ) {
+      closePopUp(cardEditModal);
+    }
+  });
+}
+
+handleClickOutsideImage();
+function handleClickOutsideImage(modal) {
+  previewImgModal.addEventListener("mousedown", (e) => {
+    if (
+      e.target.classList.contains("modal") ||
+      e.target.classList.contains("modal__close")
+    ) {
+      closePopUp(previewImgModal);
+    }
+  });
+}
 /* -------------------------------------------------------------------------- */
 /*                               Event Handlers                               */
 /* -------------------------------------------------------------------------- */

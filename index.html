@@ -55,18 +55,26 @@
         <form class="modal__form" id="edit-profile-form">
           <input
             class="modal__input modal__form-title"
+            id="owner-name"
             type="text"
             name="title"
             placeholder="Name"
+            minlength="2"
+            max="40"
             required
           />
+          <span class="modal__input-type-error" id="owner-name-error"></span>
           <input
             class="modal__input modal__form-description"
+            id="owner-description"
             type="text"
             name="description"
             placeholder="Description"
+            minlength="2"
+            max="200"
             required
           />
+          <span class="modal__input-type-error" id="owner-description-error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -85,8 +93,11 @@
             type="text"
             name="title"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required
           />
+          <span class="modal__input-type-error" id="card-title-error"></span>
           <input
             class="modal__input modal__form-description"
             type="url"
@@ -94,7 +105,14 @@
             placeholder="Image Link"
             required
           />
-          <button class="modal__button" type="submit">Create</button>
+          <span class="modal__input-type-error" id="card-link-error"></span>
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
+            Create
+          </button>
         </form>
       </div>
     </div>
@@ -116,5 +134,6 @@
       </li>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
