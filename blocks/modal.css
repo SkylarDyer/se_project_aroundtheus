@@ -72,6 +72,7 @@
   padding-bottom: 13px;
   padding-top: 15px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .modal__form {
@@ -82,6 +83,7 @@
 .modal__form-description {
   margin-top: 30px;
 }
+
 
 .modal__button {
   margin-top: 48px;
@@ -112,11 +114,8 @@
   line-height: 15px;
   color: #ff0000;
   opacity: 1;
-  position: absolute;
-  /* top: calc(100% + 5px); */
   transition: opacity 0.3s;
-  left: 36px;
-  top: 170px;
+  
 }
 
 .modal__input_type_error {
