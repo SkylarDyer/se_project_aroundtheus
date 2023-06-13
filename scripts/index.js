@@ -56,11 +56,13 @@ const previewImgBtn = previewImgModal.querySelector(".modal__close");
 function closePopUp(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", closeByEsc);
+  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
 }
 
 function openPopUp(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeByEsc);
+  document.addEventListener("keydown", (evt) => closeByEsc(evt, modal));
+  modal.addEventListener("mousedown", closeModalOnRemoteClick);
 }
 
 function closeByEsc(evt) {
@@ -77,6 +79,12 @@ profileCloseBtn.addEventListener("click", () => closePopUp(profileEditModal));
 cardAddCloseBtn.addEventListener("click", () => closePopUp(cardEditModal));
 
 previewImgBtn.addEventListener("click", () => closePopUp(previewImgModal));
+
+profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
+
+cardEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
+
+previewImgModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -132,27 +140,19 @@ function openEditProfileModal() {
   openPopUp(profileEditModal);
 }
 
-function handleEsc(e, modal) {
-  if (e.key === "Escape") {
-    closePopUp(modal);
-  }
-}
-
 function handleMouseDown(e, modal) {
   handleClickOutsideCard(e, modal);
 }
 
-handleClickOutsideProfile();
-function handleClickOutsideProfile(modal) {
-  profileEditModal.addEventListener("mousedown", (e) => {
-    if (
-      e.target.classList.contains("modal") ||
-      e.target.classList.contains("modal__close")
-    ) {
-      closePopUp(profileEditModal);
-    }
-  });
+function closeModalOnRemoteClick(evt) {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target.classList.Contains("modal__close")
+  ) {
+    closePopUp(evt.target);
+  }
 }
+
 handleClickOutsideCard();
 function handleClickOutsideCard(modal) {
   cardEditModal.addEventListener("mousedown", (e) => {
@@ -176,6 +176,7 @@ function handleClickOutsideImage(modal) {
     }
   });
 }
+
 /* -------------------------------------------------------------------------- */
 /*                               Event Handlers                               */
 /* -------------------------------------------------------------------------- */
@@ -204,6 +205,7 @@ cardAddForm.addEventListener("submit", (e) => {
   cardListEl.prepend(cardElement);
   closePopUp(cardEditModal);
   cardAddForm.reset();
+  toggleButtonState;
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
