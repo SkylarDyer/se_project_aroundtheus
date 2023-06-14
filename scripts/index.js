@@ -147,7 +147,6 @@ function closeModalOnRemoteClick(evt) {
   }
 }
 
-
 /* -------------------------------------------------------------------------- */
 /*                               Event Handlers                               */
 /* -------------------------------------------------------------------------- */
@@ -161,16 +160,18 @@ function handleProfileEditSubmit(e) {
 
 function handleCardAddFormSubmit(e) {
   e.preventDefault();
-  const title = e.target.title.value;
-  const link = e.target.link.value;
+  const cardFormInputs = [e.target.title, e.target.link];
+  const cardFormSubmitButton = e.target.querySelector(
+    config.submitButtonSelector
+  );
   const cardElement = getCardElement({
-    name: title,
-    link: link,
+    name: cardFormInputs.value,
+    link: cardFormInputs.value,
   });
   cardListEl.prepend(cardElement);
   closePopUp(cardEditModal);
   cardAddForm.reset();
-  toggleButtonState(inputEls, submitButton, options);
+  toggleButtonState(cardFormInputs, cardFormSubmitButton, options);
 }
 
 /* -------------------------------------------------------------------------- */
