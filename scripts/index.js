@@ -141,7 +141,7 @@ function handleMouseDown(e, modal) {
 function closeModalOnRemoteClick(evt) {
   if (
     evt.target === evt.currentTarget ||
-    evt.target.classList.Contains("modal__close")
+    evt.target.classList.contains("modal__close")
   ) {
     closePopUp(evt.target);
   }
@@ -171,7 +171,7 @@ function handleCardAddFormSubmit(e) {
   cardListEl.prepend(cardElement);
   closePopUp(cardEditModal);
   cardAddForm.reset();
-  toggleButtonState(cardFormInputs, cardFormSubmitButton, options);
+  toggleButtonState(cardFormInputs, cardFormSubmitButton, config);
 }
 
 /* -------------------------------------------------------------------------- */
