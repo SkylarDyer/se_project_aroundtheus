@@ -74,10 +74,7 @@
             maxlength="200"
             required
           />
-          <span
-            class="modal__error"
-            id="owner-description-error"
-          ></span>
+          <span class="modal__error" id="owner-description-error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -111,16 +108,11 @@
             required
           />
           <span class="modal__error" id="card-link-error"></span>
-          <button
-            class="modal__button"
-            type="submit"
-          >
-            Create
-          </button>
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>
-    <div class="modal" id="modal-preview-image">
+    <div class="modal" id="modal-preview">
       <div class="modal__container modal__container_content_image">
         <button class="modal__close" type="button"></button>
         <img class="modal__image-preview" src="#" alt="" />
@@ -137,7 +129,6 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/index.js" defer></script>
-    <script src="./scripts/validation.js" defer></script>
+    <script src="../pages/index.js" type="module" defer></script>
   </body>
 </html>
