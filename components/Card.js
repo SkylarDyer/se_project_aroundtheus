@@ -1,4 +1,4 @@
-import { openPopUp, closePopUp } from "../utils/utils";
+import { openPopUp, closePopUp } from "../utils/utils.js";
 import {
   previewModal,
   previewImgTitle,
