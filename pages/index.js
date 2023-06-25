@@ -115,7 +115,7 @@ function handleCardAddFormSubmit(e) {
   renderCard({ name, link }, cardListEl);
 
   closePopUp(cardEditModal);
-  profileAddCardForm.reset();
+  cardAddForm.reset();
   addFormValidator.toggleButtonState();
 }
 
@@ -154,12 +154,12 @@ const formValidatorConfig = {
 
 const addFormValidator = new FormValidator(
   formValidatorConfig,
-  profileEditForm
+  cardAddForm
 );
 addFormValidator.enableValidation();
 
 const editFormValidator = new FormValidator(
   formValidatorConfig,
-  profileEditForm
+  cardAddForm
 );
 editFormValidator.enableValidation();

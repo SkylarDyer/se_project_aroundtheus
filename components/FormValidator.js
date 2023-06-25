@@ -31,10 +31,10 @@ class FormValidator {
     this._hideInputError(inputEl);
   }
 
-  _showInputError(inputEl, errorMessage) {
+  _showInputError(inputEl) {
     const errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.add(this._inputErrorClass);
-    errorMessageEl.textContent = inputEl.errorMessage;
+    errorMessageEl.textContent = inputEl.validationMessage;
     errorMessageEl.classList.add(this._errorClass);
   }
   _hideInputError(inputEl) {

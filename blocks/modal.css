@@ -112,6 +112,7 @@
 
 .modal__error_visible {
   border-bottom: 1px solid #ff0000;
+  border: none;
 }
 
 .modal__error {
