@@ -189,7 +189,7 @@ function handleCardAddFormSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
 
-  closePopup(cardEditModal);
+  closePopUp(cardEditModal);
   profileAddCardForm.reset();
   addFormValidator.toggleButtonState();
 }
