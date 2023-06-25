@@ -83,13 +83,13 @@ const cardUrlInput = document.querySelector("#card-link");
 //   }
 // }
 
-// cardAddButton.addEventListener("click", () => openPopUp(cardEditModal));
+cardAddButton.addEventListener("click", () => openPopUp(cardEditModal));
 
-// profileCloseBtn.addEventListener("click", () => closePopUp(profileEditModal));
+profileCloseBtn.addEventListener("click", () => closePopUp(profileEditModal));
 
-// cardAddCloseBtn.addEventListener("click", () => closePopUp(cardEditModal));
+cardAddCloseBtn.addEventListener("click", () => closePopUp(cardEditModal));
 
-// previewImgBtn.addEventListener("click", () => closePopUp(previewModal));
+previewImgBtn.addEventListener("click", () => closePopUp(previewModal));
 
 // function getCardElement(cardData) {
 //   const cardElement = cardTemplate.cloneNode(true);
@@ -124,18 +124,15 @@ const cardUrlInput = document.querySelector("#card-link");
 
 //   return cardElement;
 // }
-
-function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
-  cardListEl.prepend(cardElement);
-}
-
 const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
-
-const cardSelector = "#card-template";
+function renderCard(cardData) {
+  const card = new Card(cardData, "#card-template");
+  const cardElement = card.getView();
+  cardListEl.prepend(cardElement);
+}
 
 function getCardElement(data) {
   const card = new Card(data, "#card-template");
@@ -192,8 +189,9 @@ function handleCardAddFormSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
 
-  closePopup(addCardModal);
+  closePopup(cardEditModal);
   profileAddCardForm.reset();
+  addFormValidator.toggleButtonState();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -213,9 +211,6 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 /* -------------------------------------------------------------------------- */
 /*                                   Add Card                                */
 /* -------------------------------------------------------------------------- */
-initialCards.forEach((data) => {
-  renderCard(data);
-});
 
 cardAddButton.addEventListener("click", () => {
   openPopUp(cardEditModal);
@@ -224,7 +219,7 @@ cardAddButton.addEventListener("click", () => {
 /* -------------------------------------------------------------------------- */
 /*                                   Validator                                */
 /* -------------------------------------------------------------------------- */
-const FormValidatorConfig = {
+const formValidatorConfig = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
@@ -233,13 +228,13 @@ const FormValidatorConfig = {
 };
 
 const addFormValidator = new FormValidator(
-  FormValidatorConfig,
+  formValidatorConfig,
   profileEditForm
 );
 addFormValidator.enableValidation();
 
 const editFormValidator = new FormValidator(
-  FormValidatorConfig,
+  formValidatorConfig,
   profileEditForm
 );
 editFormValidator.enableValidation();

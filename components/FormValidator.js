@@ -13,10 +13,12 @@ class FormValidator {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
       return;
+    } else {
+      this._submitButton.classList.remove(this._inactiveButtonClass);
+      this._submitButton.disabled = false;
     }
-    this._submitButton.classList.remove(this._inactiveButtonClass);
-    this._submitButton.disabled = false;
   }
+
   _hasInvalidInput() {
     return !this._inputEls.every((inputEl) => inputEl.validity.valid);
   }
@@ -32,7 +34,7 @@ class FormValidator {
   _showInputError(inputEl, errorMessage) {
     const errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.add(this._inputErrorClass);
-    errorMessageEl.textContent = errorMessage;
+    errorMessageEl.textContent = inputEl.errorMessage;
     errorMessageEl.classList.add(this._errorClass);
   }
   _hideInputError(inputEl) {
@@ -63,7 +65,7 @@ class FormValidator {
       e.preventDefault();
     });
 
-    this._setEventListeners();
+    this._setEventListeners(this._form);
   }
 }
 

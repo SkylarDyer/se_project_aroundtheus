@@ -1,7 +1,17 @@
+function openPopUp(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeByEsc);
+  modal.addEventListener("mousedown", closeModalOnRemoteClick);
+}
+function closePopUp(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeByEsc);
+  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
+}
+
 function closeByEsc(evt) {
   if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
-    closePopUp(openedPopup);
+    closePopUp(document.querySelector(".modal_opened"));
   }
 }
 
@@ -14,15 +24,5 @@ function closeModalOnRemoteClick(evt) {
   }
 }
 
-function openPopUp(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", (evt) => closeByEsc(evt, modal));
-  modal.addEventListener("mousedown", closeModalOnRemoteClick);
-}
-function closePopUp(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeByEsc);
-  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
-}
-
 export { closeByEsc, openPopUp, closePopUp };
+
