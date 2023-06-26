@@ -152,14 +152,15 @@ const formValidatorConfig = {
   errorClass: "modal__error_visible",
 };
 
-const addFormValidator = new FormValidator(
-  formValidatorConfig,
-  cardAddForm
-);
+const addFormValidator = new FormValidator(formValidatorConfig, cardAddForm);
 addFormValidator.enableValidation();
 
-const editFormValidator = new FormValidator(
+const editFormValidator = new FormValidator(formValidatorConfig, cardAddForm);
+
+const editProfileFormValidator = new FormValidator(
   formValidatorConfig,
-  cardAddForm
+  profileEditForm
 );
+editProfileFormValidator.enableValidation();
+
 editFormValidator.enableValidation();
