@@ -6,7 +6,7 @@
     <meta name="author" content="Skylar Dyer" />
     <meta name="description" content="" />
     <title>Around the U.S.</title>
-    <link href="./pages/index.css" rel="stylesheet" />
+    <!-- <link href="./pages/index.css" rel="stylesheet" /> -->
     <link rel="icon" href="favicon.ico" />
   </head>
   <body class="page">
@@ -14,7 +14,7 @@
       <header class="header page__section">
         <img
           class="header__image"
-          src="./images/logo.svg"
+          src=<%=require('./images/logo.svg')%>
           alt="Around the U.S. logo"
         />
       </header>
@@ -22,7 +22,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src=<%=require('./images/jacques-cousteau.jpg')%>
             alt="Avatar"
           />
           <div class="profile__info">
@@ -129,6 +129,6 @@
         </div>
       </li>
     </template>
-    <script src="./pages/index.js" type="module" defer></script>
+    <!-- <script src="./pages/index.js" type="module" defer></script> -->
   </body>
 </html>
