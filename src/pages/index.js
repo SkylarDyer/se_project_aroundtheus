@@ -30,23 +30,6 @@ function addCard(data) {
 const newCardPopup = new PopupWithForm("#card-edit-modal", () => {});
 newCardPopup.open();
 
-// const cardSection = new Section({
-//   items: initialCards,
-//   renderer: (data) => {
-//     const cardEl = new Card(
-//       {
-//         data,
-//         handleImageClick: (imgData) => {
-//           previewImagePopup.open(imgData);
-//         },
-//       },
-//       selector.cardTemplate
-//     );
-//     cardSection.addItems(cardEl.getView());
-//   },
-// });
-
-//
 const section = new Section(
   {
     items: initialCards,
