@@ -1,6 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                                   IMPORTS                                  */
+/* -------------------------------------------------------------------------- */
 import "./index.css";
-
-// import classes
 import Card from "../components/Card";
 import { openPopUp, closePopUp } from "../utils/utils";
 import FormValidator from "../components/FormValidator";
@@ -12,24 +13,16 @@ import {
   cardAddForm,
   profileEditForm,
   cardsList,
+  userDescriptionInput,
+  userNameInput,
 } from "../utils/constants";
 import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
+import UserInfo from "../components/UserInfo";
 
-// functions
-function addCard(data) {
-  const cardData = {
-    name: data[".modal__form-title"],
-    link: data[".modal__form-description"],
-  };
-  renderCard(cardData);
-  newCardPopup.close();
-}
-
-// const formPreviewPopup = new PopupWithForm(popupSelector, handleFormSubmit);
-const newCardPopup = new PopupWithForm("#card-edit-modal", () => {});
-newCardPopup.open();
-
+/* -------------------------------------------------------------------------- */
+/*                                  CARD SECTION                              */
+/* -------------------------------------------------------------------------- */
 const section = new Section(
   {
     items: initialCards,
@@ -50,38 +43,82 @@ function createCard(cardData) {
 function handleCardClick(cardData) {
   previewImagePopup.open(cardData);
 }
+/* -------------------------------------------------------------------------- */
+/*                                  USER INFO                                 */
+/* -------------------------------------------------------------------------- */
+const userInfo = new UserInfo({
+  userNameSelector: ".profile__title",
+  userDescriptionSelector: ".profile__description",
+});
 
-//
+/* -------------------------------------------------------------------------- */
+/*                              POPUP WITH IMAGE                              */
+/* -------------------------------------------------------------------------- */
 
+const previewImagePopup = new PopupWithImage("#modal-preview");
+previewImagePopup.setEventListeners;
+
+/* -------------------------------------------------------------------------- */
+/*                               POPUP WITH FORM                              */
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------- edit profile modal --------------------------- */
+const profileEditButton = document.querySelector(".profile__edit-button");
+const profileEditPopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileEditSubmit
+);
+profileEditPopup.setEventListeners;
+profileEditButton.addEventListener("click", () => {
+  handleProfileEditClick();
+});
+
+function handleProfileEditClick() {
+  const user = userInfo.getUserInfo();
+  userNameInput.value = user.name;
+  userDescriptionInput.value = user.job;
+  profileEditPopup.open();
+}
+
+function handleProfileEditSubmit(inputValues) {
+  userInfo.setUserInfo(inputValues);
+  profileEditPopup.close();
+}
+
+/* ----------------------------- add card modal ----------------------------- */
+const addCardButton = document.querySelector(".profile__add-button");
+const addCardTitleField = document.querySelector(".modal__form-title");
+const addCardImageLinkField = document.querySelector(
+  ".modal__form-description"
+);
+const addCardPopup = new PopupWithForm("#card-edit-modal", handleAddCardSubmit);
+addCardPopup.setEventListeners();
+addCardButton.addEventListener("click", () => {
+  addCardPopup.open();
+});
+
+function handleAddCardSubmit(inputValues) {
+  const newCardData = {
+    name: addCardTitleField.value,
+    link: addCardImageLinkField.value,
+  };
+  const newCard = createCard(newCardData);
+  section.addItem(newCard);
+  cardAddFormValidator.resetValidation();
+  addCardPopup.close();
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               FORM VALIDATION                              */
+/* -------------------------------------------------------------------------- */
 const cardAddFormValidator = new FormValidator(
   formValidatorConfig,
   cardAddForm
 );
+cardAddFormValidator.enableValidation();
 
 const editProfileFormValidator = new FormValidator(
   formValidatorConfig,
   profileEditForm
 );
-
-// initialize instances
-section.renderItems(initialCards);
-cardAddFormValidator.enableValidation();
 editProfileFormValidator.enableValidation();
-
-/* -------------------------------------------------------------------------- */
-/*                      Project 8 GENERATE INITIAL CARDS                      */
-/* -------------------------------------------------------------------------- */
-
-// Preview image Card
-const previewImagePopup = new PopupWithImage("#preview-image-modal");
-
-// Generate Card
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  ".card__list"
-);
-
-cardList.renderItems();

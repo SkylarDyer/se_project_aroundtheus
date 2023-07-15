@@ -9,12 +9,11 @@ export default class PopupWithImage extends Popup {
     this._previewImgModal = this._popupElement.querySelector(
       ".modal__image-preview"
     );
-
   }
 
   open(data) {
     this._previewImgModal.src = data.link;
-    this._previewImgModal.alt = data.link;
+    this._previewImgModal.alt = data.name;
     this._previewImgTitle.textContent = data.name;
     super.open();
   }

@@ -34,6 +34,7 @@ export const selectors = {
 };
 
 export const formValidatorConfig = {
+  formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
@@ -44,3 +45,6 @@ export const formValidatorConfig = {
 export const cardAddForm = document.querySelector("#add-card-form");
 export const profileEditForm = document.querySelector("#edit-profile-form");
 export const cardsList = document.querySelector(".cards__list");
+export const userNameInput = document.querySelector("#owner-name");
+export const userDescriptionInput =
+  document.querySelector("#owner-description");
