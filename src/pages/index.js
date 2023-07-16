@@ -56,7 +56,7 @@ const userInfo = new UserInfo({
 /* -------------------------------------------------------------------------- */
 
 const previewImagePopup = new PopupWithImage("#modal-preview");
-previewImagePopup.setEventListeners;
+previewImagePopup.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
 /*                               POPUP WITH FORM                              */
@@ -68,7 +68,7 @@ const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
-profileEditPopup.setEventListeners;
+profileEditPopup.setEventListeners();
 profileEditButton.addEventListener("click", () => {
   handleProfileEditClick();
 });

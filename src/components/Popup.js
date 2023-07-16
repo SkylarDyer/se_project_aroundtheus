@@ -12,12 +12,12 @@ export default class Popup {
     }
   }
 
-  _setEventListeners() {
+  setEventListeners() {
     this._popupElement.addEventListener("keydown", this._handleEscClose);
     this._popupElement.addEventListener("mousedown", this._handleClickOutside);
 
     this._popupElementCloseButton.addEventListener("click", () => {
-      this.close;
+      this.close();
     });
   }
 
