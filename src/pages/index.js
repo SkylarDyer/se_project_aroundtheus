@@ -76,12 +76,12 @@ profileEditButton.addEventListener("click", () => {
 function handleProfileEditClick() {
   const user = userInfo.getUserInfo();
   userNameInput.value = user.name;
-  userDescriptionInput.value = user.job;
+  userDescriptionInput.value = user.description;
   profileEditPopup.open();
 }
 
 function handleProfileEditSubmit(inputValues) {
-  userInfo.setUserInfo(inputValues);
+  userInfo.setUserInfo(userNameInput.value, userDescriptionInput.value);
   profileEditPopup.close();
 }
 
@@ -104,7 +104,7 @@ function handleAddCardSubmit(inputValues) {
   };
   const newCard = createCard(newCardData);
   section.addItem(newCard);
-  cardAddFormValidator.resetValidation();
+  cardAddFormValidator.resetValidation;
   addCardPopup.close();
 }
 

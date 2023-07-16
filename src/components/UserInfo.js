@@ -16,6 +16,6 @@ export default class UserInfo {
   setUserInfo(user) {
     this.nameElement.textContent = user.title;
     this.descriptionElement.textContent = user.description;
+    Ï;
   }
 }
-const user = { name: "", description: "" };
