@@ -156,19 +156,8 @@ const formValidatorConfig = {
 const addFormValidator = new FormValidator(formValidatorConfig, cardAddForm);
 addFormValidator.enableValidation();
 
-const editFormValidator = new FormValidator(formValidatorConfig, cardAddForm);
-<<<<<<< HEAD:pages/index.js
-=======
-editFormValidator.enableValidation();
->>>>>>> 02d386e74acf8a6e08038f9c299083e23399a1b7:src/pages/index copy.js
-
-const editProfileFormValidator = new FormValidator(
+const editFormValidator = new FormValidator(
   formValidatorConfig,
   profileEditForm
 );
-editProfileFormValidator.enableValidation();
-<<<<<<< HEAD:pages/index.js
-
 editFormValidator.enableValidation();
-=======
->>>>>>> 02d386e74acf8a6e08038f9c299083e23399a1b7:src/pages/index copy.js
