@@ -1,6 +1,7 @@
-import Card from "../components/Card.js";
-import { openPopUp, closePopUp } from "../utils/utils.js";
-import FormValidator from "../components/FormValidator.js";
+import "./index.css"
+import Card from "../components/Card";
+import { openPopUp, closePopUp } from "../utils/utils";
+import FormValidator from "../components/FormValidator";
 
 const initialCards = [
   {
@@ -148,7 +149,7 @@ const formValidatorConfig = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
+  inputErrorClass: "modal__input-type-error",
   errorClass: "modal__error_visible",
 };
 
@@ -156,11 +157,18 @@ const addFormValidator = new FormValidator(formValidatorConfig, cardAddForm);
 addFormValidator.enableValidation();
 
 const editFormValidator = new FormValidator(formValidatorConfig, cardAddForm);
+<<<<<<< HEAD:pages/index.js
+=======
+editFormValidator.enableValidation();
+>>>>>>> 02d386e74acf8a6e08038f9c299083e23399a1b7:src/pages/index copy.js
 
 const editProfileFormValidator = new FormValidator(
   formValidatorConfig,
   profileEditForm
 );
 editProfileFormValidator.enableValidation();
+<<<<<<< HEAD:pages/index.js
 
 editFormValidator.enableValidation();
+=======
+>>>>>>> 02d386e74acf8a6e08038f9c299083e23399a1b7:src/pages/index copy.js

@@ -46,7 +46,10 @@ class FormValidator {
   _setEventListeners() {
     this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
+<<<<<<< HEAD:components/FormValidator.js
 
+=======
+>>>>>>> 02d386e74acf8a6e08038f9c299083e23399a1b7:src/components/FormValidator.js
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
