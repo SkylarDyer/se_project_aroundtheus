@@ -80,16 +80,16 @@ function handleProfileEditClick() {
   profileEditPopup.open();
 }
 
-function handleProfileEditSubmit(inputValues) {
+function handleProfileEditSubmit() {
   userInfo.setUserInfo(userNameInput.value, userDescriptionInput.value);
   profileEditPopup.close();
 }
 
 /* ----------------------------- add card modal ----------------------------- */
 const addCardButton = document.querySelector(".profile__add-button");
-const addCardTitleField = document.querySelector(".modal__form-title");
+const addCardTitleField = document.querySelector("#card-title");
 const addCardImageLinkField = document.querySelector(
-  ".modal__form-description"
+  "#card-link"
 );
 const addCardPopup = new PopupWithForm("#card-edit-modal", handleAddCardSubmit);
 addCardPopup.setEventListeners();
@@ -97,7 +97,7 @@ addCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-function handleAddCardSubmit(inputValues) {
+function handleAddCardSubmit() {
   const newCardData = {
     name: addCardTitleField.value,
     link: addCardImageLinkField.value,
