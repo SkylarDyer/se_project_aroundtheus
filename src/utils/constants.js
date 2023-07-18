@@ -31,6 +31,8 @@ export const selectors = {
   previewModal: "#modal-preview",
   cardPopupSelector: "#card-edit-modal",
   profilePopupSelector: "#profile-edit-modal",
+  // userNameSelector: ".profile__title",
+  // userDescriptionSelector: ".profie__description",
 };
 
 export const formValidatorConfig = {

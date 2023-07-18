@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const inputs = this._popupForm.querySelectorAll("modal__input");
+    const inputs = this._popupForm.querySelectorAll(".modal__input");
     const values = {};
     inputs.forEach((input) => {
       values[input.name] = input.value;
@@ -17,10 +17,6 @@ export default class PopupWithForm extends Popup {
     return values;
   }
 
-  disableButton() {
-    this._submitButton.disabled = true;
-    this._submitButton.classList.add("disabled");
-  }
 
   setEventListeners() {
     super.setEventListeners();
@@ -28,8 +24,8 @@ export default class PopupWithForm extends Popup {
       e.preventDefault();
       const inputValues = this._getInputValues();
       this._handleFormSubmit(inputValues);
+      console.log(inputValues);
     });
-    this._popupForm.reset();
   }
 
   close() {
