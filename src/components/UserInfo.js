@@ -1,3 +1,5 @@
+const user = { name: "", description: "" };
+
 export default class UserInfo {
   constructor(selectors) {
     this._nameElement = document.querySelector(selectors.userNameSelector);
@@ -13,8 +15,8 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(nameInput, descriptionInput) {
-    this._nameElement.textContent = nameInput;
-    this._descriptionElement.textContent = descriptionInput;
+  setUserInfo(user) {
+    this._nameElement.textContent = user.title;
+    this._descriptionElement.textContent = user.description;
   }
 }
