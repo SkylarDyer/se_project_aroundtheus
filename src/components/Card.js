@@ -1,8 +1,3 @@
-import { openPopUp, closePopUp, closeByEsc } from "../utils/utils.js";
-const previewModal = document.querySelector("#modal-preview");
-const previewModalImage = previewModal.querySelector(".modal__image-preview");
-const previewModalTitle = previewModal.querySelector(".modal__image-title");
-
 export default class Card {
   constructor({ name, link }, cardSelector) {
     this._name = name;
@@ -20,7 +15,7 @@ export default class Card {
     });
 
     this._cardImage.addEventListener("click", () => {
-      this._handleImagePreview();
+      // this._handleImagePreview();
     });
   }
 
@@ -30,13 +25,6 @@ export default class Card {
 
   _handleDeleteCard() {
     this._cardElement.remove();
-  }
-
-  _handleImagePreview() {
-    previewModalImage.src = this._link;
-    previewModalImage.alt = this._name;
-    previewModalTitle.textContent = this._name;
-    openPopUp(previewModal);
   }
 
   _getTemplate() {
@@ -56,7 +44,6 @@ export default class Card {
     );
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    this._cardImage.classList.add("card__image");
     this._cardElement.querySelector(".card__title").textContent = this._name;
 
     this._setEventListeners();

@@ -20,7 +20,6 @@ export default class Popup {
   }
 
   open() {
-    this._popupElement.addEventListener("keydown", this._handleEscClose);
     this._popupElement.classList.add("modal_opened");
     document.addEventListener("keyup", this._handleEscClose);
   }

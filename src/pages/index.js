@@ -80,10 +80,14 @@ const userInfo = new UserInfo({
 /*                              POPUP WITH IMAGE                              */
 
 /* -------------------------------------------------------------------------- */
-
-const previewImagePopup = new PopupWithImage("#modal-preview");
-
+const previewImagePopup = new PopupWithImage(
+  "#modal-preview",
+  handleImageClick
+);
 previewImagePopup.setEventListeners();
+function handleImageClick(cardData) {
+  previewImagePopup.open(cardData);
+}
 
 /* -------------------------------------------------------------------------- */
 
@@ -126,10 +130,6 @@ function handleProfileEditSubmit(inputValues) {
 
 const addCardButton = document.querySelector(".profile__add-button");
 
-const addCardTitleField = document.querySelector("#card-title");
-
-const addCardImageLinkField = document.querySelector("#card-link");
-
 const addCardPopup = new PopupWithForm("#card-edit-modal", handleAddCardSubmit);
 
 addCardPopup.setEventListeners();
@@ -141,14 +141,13 @@ addCardButton.addEventListener("click", () => {
 });
 
 function handleAddCardSubmit(inputValues) {
+  const { title, link } = inputValues;
   const newCardData = {
-    name: addCardTitleField.value,
-    link: addCardImageLinkField.value,
+    name: title,
+    description: link,
   };
   const newCard = createCard(newCardData);
-
   section.addItem(newCard);
-
   addCardPopup.close();
 }
 
