@@ -1,4 +1,4 @@
-const user = { name: "", description: "" };
+// const user = { name: "", description: "" };
 
 export default class UserInfo {
   constructor(selectors) {
