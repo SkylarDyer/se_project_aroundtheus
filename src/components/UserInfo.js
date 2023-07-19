@@ -1,5 +1,3 @@
-// const user = { name: "", description: "" };
-
 export default class UserInfo {
   constructor(selectors) {
     this._nameElement = document.querySelector(selectors.userNameSelector);
