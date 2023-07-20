@@ -80,14 +80,8 @@ const userInfo = new UserInfo({
 /*                              POPUP WITH IMAGE                              */
 
 /* -------------------------------------------------------------------------- */
-const previewImagePopup = new PopupWithImage(
-  "#modal-preview",
-  handleImageClick
-);
+const previewImagePopup = new PopupWithImage("#modal-preview");
 previewImagePopup.setEventListeners();
-function handleImageClick(cardData) {
-  previewImagePopup.open(cardData);
-}
 
 /* -------------------------------------------------------------------------- */
 
@@ -144,7 +138,7 @@ function handleAddCardSubmit(inputValues) {
   const { title, link } = inputValues;
   const newCardData = {
     name: title,
-    description: link,
+    link: link,
   };
   const newCard = createCard(newCardData);
   section.addItem(newCard);
