@@ -70,6 +70,14 @@
   transition: 0.5s;
 }
 
-.card__delete-button:hover{
+.card__delete-button:hover {
   opacity: 0.6;
+}
+.card__counter {
+  margin: 6px auto 0;
+  font-size: 14px;
+}
+.card__button-counter {
+  display: flex;
+  flex-direction: column;
 }

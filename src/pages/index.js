@@ -8,8 +8,6 @@ import "./index.css";
 
 import Card from "../components/Card";
 
-import { openPopUp, closePopUp } from "../utils/utils";
-
 import FormValidator from "../components/FormValidator";
 
 import Section from "../components/Section";
@@ -30,6 +28,8 @@ import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
 
 import UserInfo from "../components/UserInfo";
+
+import Api from "../components/Api";
 
 /* -------------------------------------------------------------------------- */
 
@@ -166,3 +166,24 @@ const editProfileFormValidator = new FormValidator(
 );
 
 editProfileFormValidator.enableValidation();
+
+/* -------------------------------------------------------------------------- */
+/*                                     API                                    */
+/* -------------------------------------------------------------------------- */
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((result) => {
+    // process the result
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });

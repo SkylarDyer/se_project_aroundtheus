@@ -11,19 +11,13 @@
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img
-          class="header__image"
-          src=<%=require('./images/logo.svg')%>
-          alt="Around the U.S. logo"
-        />
+        <img class="header__image" src=<%=require('./images/logo.svg')%>
+        alt="Around the U.S. logo" />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__image"
-            src=<%=require('./images/avatar.jpg')%>
-            alt="Avatar"
-          />
+          <img class="profile__image" src=<%=require('./images/avatar.jpg')%>
+          alt="Avatar" />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -118,14 +112,86 @@
         <p class="modal__image-title"></p>
       </div>
     </div>
+    <!-- <div class="image-pop-up modal" id="image-pop-up__container">
+      <div class="modal__overlay image-pop-up__container-two">
+        <img class="image-pop-up__image" src=" " alt=" " />
+        <img
+          class="close-icon image-pop-up__close-icon"
+          
+        />
+        <h2 class="image-pop-up__title"></h2>
+      </div>
+    </div>
+
+    <div class="confirm-popup modal">
+      <div class="modal__overlay confirm-popup__container-two">
+        <form class="form confirm-popup__form">
+          <h2 class="confirm-popup__title">Are you sure?</h2>
+          <button type="submit" class="form__submit confirm-popup__button">
+            Yes
+          </button>
+
+          <img
+            class="close-icon confirm-popup__close-icon"
+            
+          />
+        </form>
+      </div>
+    </div> -->
+    <div class="image-popup modal" id="image-popup__container">
+      <div class="modal__container image-popup__container-two">
+        <img class="image-popup__image" src="" alt="" />
+        <img
+          class="image-popup__close-icon"
+          src="<%=require('./images/close.svg')%>"
+        />
+        <h2 class="image-popup__title"></h2>
+      </div>
+    </div>
+    <div class="confirm-popup modal">
+      <div class="modal__container confirm-popup__container-two">
+        <form class="modal__form confirm-popup__form">
+          <h2 class="confirm-popup__title">Are you sure?</h2>
+          <button type="submit" class="modal__button confirm-popup__button">
+            Yes
+          </button>
+          <img class="close-icon confirm-popup__close-icon" />
+        </form>
+      </div>
+    </div>
+    <div class="change-avi-img modal">
+      <div class="modal__container">
+        <form class="modal__form change-avi-form__container" novalidate>
+          <h2 class="change-avi-form__title">Change profile picture</h2>
+          <input
+            id="change-avi-form__link"
+            type="url"
+            class="modal__input change-avi-form__link"
+            name="avatar"
+            placeholder="Image link"
+            required
+          />
+          <span class="modal__error" id="change-avi-form__error"></span>
+          <button type="submit" class="modal__button"></button>
+          <img
+            class="close-icon change-avi-form__close-icon"
+            src="<%=require('./images/close.svg')%>"
+          />
+        </form>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
         <div class="card__description">
-          <h3 class="card__title"></h3>
-          <button class="card__like-button" type="button"></button>
-          <button class="card__delete-button" type="button"></button>
+          <h2 class="card__title"></h2>
+          <div class="card__button-counter">
+            <button class="card__like-button" type="button"></button>
+            <h3 class="card__counter">1</h3>
+            <button class="card__delete-button" type="button"></button>
+          </div>
         </div>
+        <button class="card__delete-button" type="button"></button>
       </li>
     </template>
   </body>
