@@ -1,0 +1,34 @@
+import Popup from "./Popup.js";
+
+export default class PopupWithConfirmation extends Popup {
+  constructor(popupSelector) {
+    super({ popupSelector });
+    this._popupForm = this._popupElement.querySelector(".form");
+    this._confirmButton = this._popupForm.querySelector(
+      ".confirm-popup__button"
+    );
+    this._saveButton = this._popupForm.querySelector(".form__submit");
+  }
+
+  setSubmitAction(action) {
+    this._handleConfirm = action;
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._saveButton.textContent = "Loading...";
+    } else {
+      this._saveButton.textContent = "Yes";
+    }
+  }
+
+  _handleSubmit = (evt) => {
+    evt.preventDefault();
+    this._handleConfirm();
+  };
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._popupForm.addEventListener("submit", this._handleSubmit);
+  }
+}

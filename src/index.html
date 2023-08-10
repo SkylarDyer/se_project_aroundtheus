@@ -18,6 +18,19 @@
         <section class="profile page__section">
           <img class="profile__image" src=<%=require('./images/avatar.jpg')%>
           alt="Avatar" />
+          <div class="profile__image-edit-container">
+            <button
+              class="profile__image-hover-button"
+              type="button"
+              id="profile-info__image-hover-button"
+            >
+              <img
+                src="<%=require('./images/edit-icon.svg')%>"
+                class="profile__image-hover-image"
+                alt="Edit button"
+              />
+            </button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -112,32 +125,6 @@
         <p class="modal__image-title"></p>
       </div>
     </div>
-    <!-- <div class="image-pop-up modal" id="image-pop-up__container">
-      <div class="modal__overlay image-pop-up__container-two">
-        <img class="image-pop-up__image" src=" " alt=" " />
-        <img
-          class="close-icon image-pop-up__close-icon"
-          
-        />
-        <h2 class="image-pop-up__title"></h2>
-      </div>
-    </div>
-
-    <div class="confirm-popup modal">
-      <div class="modal__overlay confirm-popup__container-two">
-        <form class="form confirm-popup__form">
-          <h2 class="confirm-popup__title">Are you sure?</h2>
-          <button type="submit" class="form__submit confirm-popup__button">
-            Yes
-          </button>
-
-          <img
-            class="close-icon confirm-popup__close-icon"
-            
-          />
-        </form>
-      </div>
-    </div> -->
     <div class="image-popup modal" id="image-popup__container">
       <div class="modal__container image-popup__container-two">
         <img class="image-popup__image" src="" alt="" />
@@ -172,7 +159,10 @@
             required
           />
           <span class="modal__error" id="change-avi-form__error"></span>
-          <button type="submit" class="modal__button"></button>
+          <button
+            type="submit"
+            class="modal__button change-avi-form__button"
+          ></button>
           <img
             class="close-icon change-avi-form__close-icon"
             src="<%=require('./images/close.svg')%>"
@@ -188,7 +178,6 @@
           <div class="card__button-counter">
             <button class="card__like-button" type="button"></button>
             <h3 class="card__counter">1</h3>
-            <button class="card__delete-button" type="button"></button>
           </div>
         </div>
         <button class="card__delete-button" type="button"></button>

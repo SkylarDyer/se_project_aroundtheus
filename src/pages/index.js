@@ -55,7 +55,6 @@ section.renderItems();
 
 function createCard(cardData) {
   const card = new Card(cardData, selectors.cardTemplate, handleCardClick);
-
   return card.getView();
 }
 
@@ -129,7 +128,7 @@ const addCardPopup = new PopupWithForm("#card-edit-modal", handleAddCardSubmit);
 addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
-  cardAddFormValidator.resetValidation;
+  cardAddFormValidator.resetValidation();
   cardAddFormValidator.toggleButtonState();
   addCardPopup.open();
 });
