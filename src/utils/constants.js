@@ -31,7 +31,7 @@ export const selectors = {
   previewModal: "#modal-preview",
   cardPopupSelector: "#card-edit-modal",
   profilePopupSelector: "#profile-edit-modal",
-  changeAviPopup: "#change-avi-img",
+  changeAviPopup: ".change-avi-img",
 };
 
 export const formValidatorConfig = {
@@ -54,3 +54,4 @@ export const aviButton = document.querySelector(".change-avi-form__button");
 export const aviEditButton = document.querySelector(
   "#profile-avi__image-hover-button"
 );
+export const addCardButton = document.querySelector(".profile__add-button");

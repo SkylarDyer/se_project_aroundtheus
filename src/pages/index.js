@@ -24,6 +24,7 @@ import {
   userNameInput,
   aviButton,
   aviEditButton,
+  addCardButton,
 } from "../utils/constants";
 
 import PopupWithImage from "../components/PopupWithImage";
@@ -128,37 +129,36 @@ const userInfo = new UserInfo({
   userAvi: ".profile__image",
 });
 
-const avatarPopup = new PopupWithForm({
-  popupSelector: selectors.changeAviPopup,
-  handleFormSubmit: (inputValues) => {
-    console.log(inputValues);
-    avatarPopup.renderLoading(true);
-    api
-      .updateProfileAvatar(values.avatar)
-      .then((data) => {
-        userInfo.setAvatar(data.avatar);
-        avatarPopup.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        avatarPopup.renderLoading(false, "save");
-      });
-  },
-});
+function handleAviPopup(values) {
+  console.log(values);
+  avatarPopup.renderLoading(true);
+  api
+    .updateProfileAvatar(values.avatar)
+    .then((data) => {
+      userInfo.setAvatar(data.avatar);
+      avatarPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      avatarPopup.renderLoading(false, "save");
+    });
+}
+
+const avatarPopup = new PopupWithForm(selectors.changeAviPopup, handleAviPopup);
 
 avatarPopup.setEventListeners();
 
 aviEditButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
-  editProfileFormValidator.resetValidation();
+  editProfileFormValidator.resetValidation;
   profileEditPopup.setInputValues(info);
   profileEditPopup.open();
 });
 
 aviButton.addEventListener("click", function () {
-  aviFormValidator.resetValidation();
+  aviFormValidator.resetValidation;
   avatarPopup.open();
 });
 
@@ -177,25 +177,27 @@ previewImagePopup.setEventListeners();
 /* -------------------------------------------------------------------------- */
 
 /* --------------------------- edit profile modal --------------------------- */
-const profileEditPopup = new PopupWithForm({
-  popupSelector: selectors.profilePopupSelector,
-  handleFormSubmit: (inputValues) => {
-    profileEditPopup.renderLoading(true);
-    api
-      .updateProfileInfo(inputValues)
-      .then((data) => {
-        console.log(data);
-        userInfo.setUserInfo(data);
-        profileEditPopup.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        profileEditPopup.renderLoading(false, "Save");
-      });
-  },
-});
+
+function handleProfileEditSubmit(values) {
+  profileEditPopup.renderLoading(true);
+  api
+    .updateProfileInfo(values)
+    .then((data) => {
+      console.log(data);
+      userInfo.setUserInfo(data);
+      profileEditPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      profileEditPopup.renderLoading(false, "Save");
+    });
+}
+const profileEditPopup = new PopupWithForm(
+  selectors.profilePopupSelector,
+  handleProfileEditSubmit
+);
 
 profileEditPopup.setEventListeners();
 
@@ -203,7 +205,7 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 
 profileEditButton.addEventListener("click", () => {
   handleProfileEditClick();
-  cardAddFormValidator.resetValidation();
+  cardAddFormValidator.resetValidation;
 });
 
 function handleProfileEditClick() {
@@ -216,54 +218,53 @@ function handleProfileEditClick() {
   profileEditPopup.open();
 }
 
-// function handleProfileEditSubmit(inputValues) {
-//   userInfo.setUserInfo(inputValues);
-//   profileEditPopup.close();
-// }
-
 /* ----------------------------- add card modal ----------------------------- */
 
-const addCardButton = document.querySelector(".profile__add-button");
+// function handleCardAddClick(inputValues) {
+//   const { title, link } = inputValues;
+//   const newCardData = {
+//     name: title,
+//     link: link,
+//   };
+// }
 
-function handleCardAddClick(inputValues) {
-  const { title, link } = inputValues;
-  const newCardData = {
-    name: title,
-    link: link,
-  };
+// const { title, link } = inputValues;
+// const newCardData = {
+//   name: title,
+//   link: link,
+// };
+
+function handleCardAddClick(values) {
+  addCardPopup.renderLoading(true);
+  api
+    .addNewCard(values)
+    .then((cardData) => {
+      const addCard = createCard(cardData);
+      addCardPopup.close();
+      cardSection.addItem(addCard.getView());
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      addCardPopup.renderLoading(false, "Create");
+    });
 }
-const addCardPopup = new PopupWithForm({
-  popupSelector: selectors.cardPopupSelector,
-  handleFormSubmit: (inputValues) => {
-    addCardPopup.renderLoading(true);
-    api
-      .addNewCard(inputValues)
-      .then((cardData) => {
-        const addCard = createCard(cardData);
-        addCardPopup.close();
-        cardSection.addItem(addCard.getView());
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        addCardPopup.renderLoading(false, "Create");
-      });
-  },
-});
+const addCardPopup = new PopupWithForm(
+  selectors.cardPopupSelector,
+  handleCardAddClick
+);
 
 addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
-  cardAddFormValidator.resetValidation();
+  cardAddFormValidator.resetValidation;
   cardAddFormValidator.toggleButtonState();
   addCardPopup.open();
 });
-
-const newCard = createCard(newCardData);
-section.addItem(newCard);
-addCardPopup.close();
-
+// const newCard = createCard(cardData);
+// section.addItem(newCard);
+// addCardPopup.close();
 /* -------------------------------------------------------------------------- */
 
 /*                               FORM VALIDATION                              */
@@ -285,7 +286,7 @@ const editProfileFormValidator = new FormValidator(
 
 editProfileFormValidator.enableValidation();
 
-const aviFormValidator = new formValidator(formValidatorConfig, aviEditForm);
+const aviFormValidator = new FormValidator(formValidatorConfig, aviEditForm);
 aviFormValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
@@ -295,7 +296,7 @@ aviFormValidator.enableValidation();
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "8d1c8a4d-d591-4303-89c5-4b1506b830b3",
     "Content-Type": "application/json",
   },
 });

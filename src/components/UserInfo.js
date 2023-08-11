@@ -1,12 +1,10 @@
-// import { values } from "core-js/core/array";
-
 export default class UserInfo {
-  constructor(selectors, userAvatar) {
+  constructor(selectors, userAvi) {
     this._nameElement = document.querySelector(selectors.userNameSelector);
     this._descriptionElement = document.querySelector(
       selectors.userDescriptionSelector
     );
-    this._userAvatar = document.querySelector(userAvatar);
+    this._userAvi = document.querySelector(userAvi);
   }
 
   getUserInfo() {
@@ -21,12 +19,12 @@ export default class UserInfo {
     this._descriptionElement.textContent = user.description;
   }
 
-  setAvatar(Value) {
-    this._userAvatar.textContent = value.name;
-    this._userAvatar.src = value;
+  setAvatar(value) {
+    this._userAvi.textContent = value.name;
+    this._userAvi.src = value;
   }
 
   getAvatar() {
-    return this.userAvatar.src;
+    return this.userAvi.src;
   }
 }
