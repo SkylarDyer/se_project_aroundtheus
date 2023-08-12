@@ -27,7 +27,6 @@ export default class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: "GET",
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -73,11 +72,11 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  updateProfileAvatar(avatar) {
+  updateProfileAvatar(inputValues) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({ avatar }),
+      body: JSON.stringify({ avatar: inputValues.link }),
     }).then(this._checkResponse);
   }
 }

@@ -14,17 +14,17 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(user) {
-    this._nameElement.textContent = user.title;
-    this._descriptionElement.textContent = user.description;
+  setUserInfo(inputValues) {
+    this._nameElement.textContent = inputValues.title;
+    this._descriptionElement.textContent = inputValues.description;
   }
 
-  setAvatar(value) {
-    this._userAvi.textContent = value.name;
-    this._userAvi.src = value;
-  }
+  // setAvatar(value) {
+  //   this._userAvi.textContent = value.name;
+  //   this._userAvi.src = value;
+  // }
 
   getAvatar() {
-    return this.userAvi.src;
+    return this._userAvi.src;
   }
 }

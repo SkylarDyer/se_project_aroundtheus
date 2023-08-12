@@ -39,7 +39,7 @@ export const formValidatorConfig = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input-type-error",
+  inputErrorClass: "modal__error",
   errorClass: "modal__error_visible",
 };
 
@@ -50,7 +50,7 @@ export const cardsList = document.querySelector(".cards__list");
 export const userNameInput = document.querySelector("#owner-name");
 export const userDescriptionInput =
   document.querySelector("#owner-description");
-export const aviButton = document.querySelector(".change-avi-form__button");
+export const aviButton = aviEditForm.querySelector(".change-avi-form__button");
 export const aviEditButton = document.querySelector(
   "#profile-avi__image-hover-button"
 );

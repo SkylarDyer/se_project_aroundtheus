@@ -43,21 +43,23 @@ import Api from "../components/Api";
 
 /* -------------------------------------------------------------------------- */
 
-const section = new Section(
-  {
-    items: initialCards,
+// const section = new Section(
+//   {
+//     items: initialCards,
 
-    renderer: (cardData) => {
-      const card = createCard(cardData);
+//     renderer: (cardData) => {
+//       const card = createCard(cardData);
 
-      section.addItem(card);
-    },
-  },
+//       section.addItem(card);
+//     },
+//   },
 
-  cardsList
-);
+//   cardsList
+// );
 
-section.renderItems();
+// let userId;
+
+// section.renderItems();
 const deleteCardPopup = new PopupWithConfirmation(".confirm-popup");
 deleteCardPopup.setEventListeners();
 
@@ -68,9 +70,10 @@ deleteCardPopup.setEventListeners();
 function createCard(cardData) {
   const card = new Card(
     cardData,
+    userId,
     selectors.cardTemplate,
-    (cardName, cardLink) => {
-      imagePopup.open(cardName, cardLink);
+    (name, link) => {
+      imagePopup.open(name, link);
     },
 
     (cardId) => {
@@ -114,7 +117,8 @@ function createCard(cardData) {
       }
     }
   );
-  return card;
+  // return card;
+  cardsList.addItem(card.getView());
 }
 
 /* -------------------------------------------------------------------------- */
@@ -129,20 +133,19 @@ const userInfo = new UserInfo({
   userAvi: ".profile__image",
 });
 
-function handleAviPopup(values) {
-  console.log(values);
+function handleAviPopup(inputValues) {
   avatarPopup.renderLoading(true);
   api
-    .updateProfileAvatar(values.avatar)
-    .then((data) => {
-      userInfo.setAvatar(data.avatar);
+    .updateProfileAvatar(inputValues.avatar)
+    .then((cardData) => {
+      userInfo.setAvatar(cardData.avatar);
       avatarPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      avatarPopup.renderLoading(false, "save");
+      avatarPopup.renderLoading(false, "Save");
     });
 }
 
@@ -150,14 +153,14 @@ const avatarPopup = new PopupWithForm(selectors.changeAviPopup, handleAviPopup);
 
 avatarPopup.setEventListeners();
 
-aviEditButton.addEventListener("click", () => {
-  const info = userInfo.getUserInfo();
-  editProfileFormValidator.resetValidation;
-  profileEditPopup.setInputValues(info);
-  profileEditPopup.open();
-});
+// aviEditButton.addEventListener("click", () => {
+//   const info = userInfo.getUserInfo();
+//   editProfileFormValidator.resetValidation;
+//   profileEditPopup.setInputValues(info);
+//   profileEditPopup.open();
+// });
 
-aviButton.addEventListener("click", function () {
+aviEditButton.addEventListener("click", () => {
   aviFormValidator.resetValidation;
   avatarPopup.open();
 });
@@ -178,13 +181,12 @@ previewImagePopup.setEventListeners();
 
 /* --------------------------- edit profile modal --------------------------- */
 
-function handleProfileEditSubmit(values) {
+function handleProfileEditSubmit(inputValues) {
   profileEditPopup.renderLoading(true);
   api
-    .updateProfileInfo(values)
-    .then((data) => {
-      console.log(data);
-      userInfo.setUserInfo(data);
+    .updateProfileInfo(inputValues)
+    .then(() => {
+      userInfo.setUserInfo(inputValues);
       profileEditPopup.close();
     })
     .catch((err) => {
@@ -234,14 +236,14 @@ function handleProfileEditClick() {
 //   link: link,
 // };
 
-function handleCardAddClick(values) {
+function handleCardAddClick(inputValues) {
   addCardPopup.renderLoading(true);
   api
-    .addNewCard(values)
+    .addNewCard(inputValues)
     .then((cardData) => {
       const addCard = createCard(cardData);
       addCardPopup.close();
-      cardSection.addItem(addCard.getView());
+      cardsList.addItem(addCard.getView());
     })
     .catch((err) => {
       console.log(err);
@@ -303,22 +305,19 @@ const api = new Api({
 
 api
   .getAPIInfo()
-  .then(([userData, userCards]) => {
-    console.log(userData);
-    userId = userData._id;
-    userInfo.setUserInfo(userData);
-    userInfo.setAvatar(userData.avatar);
-    cardSection = new Section(
+  .then(([user, initialCards]) => {
+    userId = user._id;
+    userInfo.setUserInfo({ name: user.title, description: user.description });
+    // userInfo.setAvatar(userData.avatar);
+    cardsList = new Section(
       {
-        items: userCards,
-        renderer: (cardData) => {
-          const newCard = createCard(cardData);
-          cardSection.addItem(newCard.getView());
-        },
+        items: initialCards,
+        renderer: createCard,
       },
+
       selectors.cardSection
     );
-    cardSection.renderItems();
+    cardsList.renderItems();
   })
   .catch((err) => {
     console.log(err);
