@@ -57,15 +57,16 @@ import Api from "../components/Api";
 //   cardsList
 // );
 
-// let userId;
+let userId;
+let section;
 
 // section.renderItems();
 const deleteCardPopup = new PopupWithConfirmation(".confirm-popup");
 deleteCardPopup.setEventListeners();
 
-// function handleCardClick(cardData) {
-//   previewImagePopup.open(cardData);
-// }
+function handleCardClick(cardData) {
+  previewImagePopup.open(cardData);
+}
 
 function createCard(cardData) {
   const card = new Card(
@@ -118,7 +119,7 @@ function createCard(cardData) {
     }
   );
   // return card;
-  cardsList.addItem(card.getView());
+  section.addItem(card.getView());
 }
 
 /* -------------------------------------------------------------------------- */
@@ -132,6 +133,7 @@ const userInfo = new UserInfo({
   userDescriptionSelector: ".profile__description",
   userAvi: ".profile__image",
 });
+const avatarPopup = new PopupWithForm(selectors.changeAviPopup, handleAviPopup);
 
 function handleAviPopup(inputValues) {
   avatarPopup.renderLoading(true);
@@ -148,9 +150,7 @@ function handleAviPopup(inputValues) {
       avatarPopup.renderLoading(false, "Save");
     });
 }
-
-const avatarPopup = new PopupWithForm(selectors.changeAviPopup, handleAviPopup);
-
+avatarPopup.close();
 avatarPopup.setEventListeners();
 
 // aviEditButton.addEventListener("click", () => {
@@ -180,6 +180,10 @@ previewImagePopup.setEventListeners();
 /* -------------------------------------------------------------------------- */
 
 /* --------------------------- edit profile modal --------------------------- */
+const profileEditPopup = new PopupWithForm(
+  selectors.profilePopupSelector,
+  handleProfileEditSubmit
+);
 
 function handleProfileEditSubmit(inputValues) {
   profileEditPopup.renderLoading(true);
@@ -196,18 +200,14 @@ function handleProfileEditSubmit(inputValues) {
       profileEditPopup.renderLoading(false, "Save");
     });
 }
-const profileEditPopup = new PopupWithForm(
-  selectors.profilePopupSelector,
-  handleProfileEditSubmit
-);
-
+profileEditPopup.close();
 profileEditPopup.setEventListeners();
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 
 profileEditButton.addEventListener("click", () => {
   handleProfileEditClick();
-  cardAddFormValidator.resetValidation;
+  editProfileFormValidator.resetValidation;
 });
 
 function handleProfileEditClick() {
@@ -235,7 +235,10 @@ function handleProfileEditClick() {
 //   name: title,
 //   link: link,
 // };
-
+const addCardPopup = new PopupWithForm(
+  selectors.cardPopupSelector,
+  handleCardAddClick
+);
 function handleCardAddClick(inputValues) {
   addCardPopup.renderLoading(true);
   api
@@ -243,7 +246,7 @@ function handleCardAddClick(inputValues) {
     .then((cardData) => {
       const addCard = createCard(cardData);
       addCardPopup.close();
-      cardsList.addItem(addCard.getView());
+      section.addItem(addCard.getView());
     })
     .catch((err) => {
       console.log(err);
@@ -252,11 +255,7 @@ function handleCardAddClick(inputValues) {
       addCardPopup.renderLoading(false, "Create");
     });
 }
-const addCardPopup = new PopupWithForm(
-  selectors.cardPopupSelector,
-  handleCardAddClick
-);
-
+addCardPopup.close();
 addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
@@ -309,7 +308,7 @@ api
     userId = user._id;
     userInfo.setUserInfo({ name: user.title, description: user.description });
     // userInfo.setAvatar(userData.avatar);
-    cardsList = new Section(
+    section = new Section(
       {
         items: initialCards,
         renderer: createCard,
@@ -317,7 +316,7 @@ api
 
       selectors.cardSection
     );
-    cardsList.renderItems();
+    section.renderItems();
   })
   .catch((err) => {
     console.log(err);
