@@ -41,9 +41,9 @@ export default class Card {
     }
   }
 
-  isLiked() {
-    return this._likes.some((like) => like._id === this._userId);
-  }
+  // isLiked() {
+  //   return this._likes.some((like) => like._id === this._userId);
+  // }
 
   updateLikes(likes) {
     this._likes = likes;
@@ -69,12 +69,12 @@ export default class Card {
     this._cardImage.alt = this._name;
     this._cardElement.querySelector(".card__title").textContent = this._name;
     this._cardLikes = this._cardElement.querySelector(".card__counter");
-    this.renderLikes();
-    if (this._userId != this._userCardOwnerId) {
-      this._deleteButton.remove();
-    }
+    // this.renderLikes();
+    // if (this._userId != this._userCardOwnerId) {
+    //   this._deleteButton.remove();
+    // }
 
-    this._setEventListeners();
+    // this._setEventListeners();
 
     return this._cardElement;
   }

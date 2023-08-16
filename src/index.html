@@ -63,7 +63,7 @@
             class="modal__input modal__form-title"
             id="owner-name"
             type="text"
-            name="title"
+            name="name"
             placeholder="Name"
             minlength="2"
             maxlength="40"
@@ -74,7 +74,7 @@
             class="modal__input modal__form-description"
             id="owner-description"
             type="text"
-            name="description"
+            name="about"
             placeholder="Description"
             minlength="2"
             maxlength="200"
@@ -98,7 +98,7 @@
             class="modal__input modal__form-title"
             id="card-title"
             type="text"
-            name="title"
+            name="name"
             placeholder="Title"
             minlength="1"
             maxlength="30"
@@ -149,20 +149,17 @@
     <div class="change-avi-img modal">
       <div class="modal__container">
         <form class="modal__form" id="change-avi-form" novalidate>
-          <h2 class="change-avi-form__title">Change profile picture</h2>
+          <h2 class="modal__heading">Change profile picture</h2>
           <input
             id="change-avi-form__link"
             type="url"
-            class="modal__input change-avi-form__link"
+            class="modal__input"
             name="avatar"
             placeholder="Image link"
             required
           />
-          <span class="modal__error" id="change-avi-form-error"></span>
-          <button
-            type="submit"
-            class="modal__button change-avi-form__button"
-          ></button>
+          <span class="modal__error" id="change-avi-form__link-error"></span>
+          <button type="submit" class="modal__button"></button>
           <img
             class="close-icon change-avi-form__close-icon"
             src="<%=require('./images/close.svg')%>"

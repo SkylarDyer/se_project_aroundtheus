@@ -1,10 +1,10 @@
 export default class UserInfo {
-  constructor(selectors, userAvi) {
+  constructor(selectors) {
     this._nameElement = document.querySelector(selectors.userNameSelector);
     this._descriptionElement = document.querySelector(
       selectors.userDescriptionSelector
     );
-    this._userAvi = document.querySelector(userAvi);
+    this._userAvi = document.querySelector(selectors.userAvi);
   }
 
   getUserInfo() {
@@ -15,14 +15,14 @@ export default class UserInfo {
   }
 
   setUserInfo(inputValues) {
-    this._nameElement.textContent = inputValues.title;
-    this._descriptionElement.textContent = inputValues.description;
+    this._nameElement.textContent = inputValues.name;
+    this._descriptionElement.textContent = inputValues.about;
   }
 
-  // setAvatar(value) {
-  //   this._userAvi.textContent = value.name;
-  //   this._userAvi.src = value;
-  // }
+  setAvatar(inputValues) {
+    // this._userAvi.textContent = inputValues.name;
+    this._userAvi.src = inputValues.link;
+  }
 
   getAvatar() {
     return this._userAvi.src;

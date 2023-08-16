@@ -33,22 +33,22 @@ export default class Api {
   getAPIInfo() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
-  updateProfileInfo(userData) {
+  updateProfileInfo(inputValues) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: userData.name,
-        about: userData.about,
+        name: inputValues.name,
+        about: inputValues.about,
       }),
     }).then(this._checkResponse);
   }
 
-  addNewCard({ name, link }) {
+  addNewCard(inputValues) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify({ name, link }),
+      body: JSON.stringify(inputValues),
     }).then(this._checkResponse);
   }
   deleteUserCard(cardId) {
@@ -76,7 +76,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({ avatar: inputValues.link }),
+      body: JSON.stringify({ avatar: inputValues }),
     }).then(this._checkResponse);
   }
 }

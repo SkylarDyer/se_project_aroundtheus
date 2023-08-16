@@ -64,15 +64,11 @@ let section;
 const deleteCardPopup = new PopupWithConfirmation(".confirm-popup");
 deleteCardPopup.setEventListeners();
 
-function handleCardClick(cardData) {
-  previewImagePopup.open(cardData);
-}
-
 function createCard(cardData) {
   const card = new Card(
     cardData,
-    userId,
     selectors.cardTemplate,
+    userId,
     (name, link) => {
       imagePopup.open(name, link);
     },
@@ -140,7 +136,7 @@ function handleAviPopup(inputValues) {
   api
     .updateProfileAvatar(inputValues.avatar)
     .then((cardData) => {
-      userInfo.setAvatar(cardData.avatar);
+      userInfo.setAvatar(cardData);
       avatarPopup.close();
     })
     .catch((err) => {
@@ -170,7 +166,10 @@ aviEditButton.addEventListener("click", () => {
 /*                              POPUP WITH IMAGE                              */
 
 /* -------------------------------------------------------------------------- */
-const previewImagePopup = new PopupWithImage("#modal-preview");
+const previewImagePopup = new PopupWithImage("#modal-preview", handleCardClick);
+function handleCardClick(cardData) {
+  previewImagePopup.open(cardData);
+}
 previewImagePopup.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
@@ -215,7 +214,7 @@ function handleProfileEditClick() {
 
   userNameInput.value = user.name;
 
-  userDescriptionInput.value = user.description;
+  userDescriptionInput.value = user.about;
 
   profileEditPopup.open();
 }
@@ -306,8 +305,8 @@ api
   .getAPIInfo()
   .then(([user, initialCards]) => {
     userId = user._id;
-    userInfo.setUserInfo({ name: user.title, description: user.description });
-    // userInfo.setAvatar(userData.avatar);
+    userInfo.setUserInfo({ name: user.name, description: user.about });
+    userInfo.setAvatar(user.avatar);
     section = new Section(
       {
         items: initialCards,
