@@ -13,16 +13,13 @@ import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
 
 import {
-  initialCards,
   selectors,
   formValidatorConfig,
   cardAddForm,
   profileEditForm,
   aviEditForm,
-  cardsList,
   userDescriptionInput,
   userNameInput,
-  aviButton,
   aviEditButton,
   addCardButton,
 } from "../utils/constants";
@@ -43,79 +40,68 @@ import Api from "../components/Api";
 
 /* -------------------------------------------------------------------------- */
 
-// const section = new Section(
-//   {
-//     items: initialCards,
-
-//     renderer: (cardData) => {
-//       const card = createCard(cardData);
-
-//       section.addItem(card);
-//     },
-//   },
-
-//   cardsList
-// );
-
 let userId;
-let section;
-
-// section.renderItems();
-const deleteCardPopup = new PopupWithConfirmation(".confirm-popup");
+let newCardSection;
+const deleteCardPopup = new PopupWithConfirmation(".delete__popup");
 deleteCardPopup.setEventListeners();
+
+const imagePopup = new PopupWithImage(selectors.cardPopupSelector);
+imagePopup.setEventListeners();
 
 function createCard(cardData) {
   const card = new Card(
-    cardData,
-    selectors.cardTemplate,
+    cardData.name,
+    cardData.link,
+    cardData.likes,
+    cardData._id,
+    cardData.owner._id,
     userId,
-    (name, link) => {
-      imagePopup.open(name, link);
-    },
-
-    (cardId) => {
-      deleteCardPopup.open();
-      deleteCardPopup.setSubmitAction(() => {
-        deleteCardPopup.renderLoading(true);
-        api
-          .deleteUserCard(cardId)
-          .then(() => {
-            card.deleteCard();
-            deleteCardPopup.close();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-          .finally(() => {
-            deleteCardPopup.renderLoading(false);
-          });
-      });
-    },
-
-    (cardId) => {
-      if (card.isLiked()) {
-        api
-          .removeCardLikes(cardId)
-          .then((res) => {
-            card.updateLikes(res.likes);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        api
-          .addCardLikes(cardId)
-          .then((res) => {
-            card.updateLikes(res.likes);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick
   );
-  // return card;
-  section.addItem(card.getView());
+  return card.getView();
+}
+
+function handleDeleteClick(cardId) {
+  deleteCardPopup.open();
+  deleteCardPopup.setSubmitAction(() => {
+    // deleteCardPopup.renderLoading(true);
+    api
+      .deleteUserCard(cardId)
+      .then(() => {
+        card.deleteCard();
+        deleteCardPopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        deleteCardPopup.renderLoading(false);
+      });
+  });
+}
+
+function handleLikeClick(card) {
+  if (card.isLiked()) {
+    api
+      .removeCardLikes(cardId)
+      .then((res) => {
+        card.updateLikes(res.likes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    api
+      .addCardLikes(cardId)
+      .then((res) => {
+        card.updateLikes(res.likes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -135,26 +121,19 @@ function handleAviPopup(inputValues) {
   avatarPopup.renderLoading(true);
   api
     .updateProfileAvatar(inputValues.avatar)
-    .then((cardData) => {
-      userInfo.setAvatar(cardData);
+    .then((res) => {
+      userInfo.setAvatar(res);
       avatarPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      avatarPopup.renderLoading(false, "Save");
+      avatarPopup.renderLoading(false);
     });
 }
 avatarPopup.close();
 avatarPopup.setEventListeners();
-
-// aviEditButton.addEventListener("click", () => {
-//   const info = userInfo.getUserInfo();
-//   editProfileFormValidator.resetValidation;
-//   profileEditPopup.setInputValues(info);
-//   profileEditPopup.open();
-// });
 
 aviEditButton.addEventListener("click", () => {
   aviFormValidator.resetValidation;
@@ -166,7 +145,10 @@ aviEditButton.addEventListener("click", () => {
 /*                              POPUP WITH IMAGE                              */
 
 /* -------------------------------------------------------------------------- */
-const previewImagePopup = new PopupWithImage("#modal-preview", handleCardClick);
+const previewImagePopup = new PopupWithImage(
+  ".modal__image-preview",
+  handleCardClick
+);
 function handleCardClick(cardData) {
   previewImagePopup.open(cardData);
 }
@@ -221,23 +203,6 @@ function handleProfileEditClick() {
 
 /* ----------------------------- add card modal ----------------------------- */
 
-// function handleCardAddClick(inputValues) {
-//   const { title, link } = inputValues;
-//   const newCardData = {
-//     name: title,
-//     link: link,
-//   };
-// }
-
-// const { title, link } = inputValues;
-// const newCardData = {
-//   name: title,
-//   link: link,
-// };
-const addCardPopup = new PopupWithForm(
-  selectors.cardPopupSelector,
-  handleCardAddClick
-);
 function handleCardAddClick(inputValues) {
   addCardPopup.renderLoading(true);
   api
@@ -254,6 +219,11 @@ function handleCardAddClick(inputValues) {
       addCardPopup.renderLoading(false, "Create");
     });
 }
+const addCardPopup = new PopupWithForm(
+  selectors.cardPopupSelector,
+  handleCardAddClick
+);
+
 addCardPopup.close();
 addCardPopup.setEventListeners();
 
@@ -262,9 +232,7 @@ addCardButton.addEventListener("click", () => {
   cardAddFormValidator.toggleButtonState();
   addCardPopup.open();
 });
-// const newCard = createCard(cardData);
-// section.addItem(newCard);
-// addCardPopup.close();
+
 /* -------------------------------------------------------------------------- */
 
 /*                               FORM VALIDATION                              */
@@ -300,23 +268,21 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-api
-  .getAPIInfo()
-  .then(([user, initialCards]) => {
-    userId = user._id;
-    userInfo.setUserInfo({ name: user.name, description: user.about });
-    userInfo.setAvatar(user.avatar);
-    section = new Section(
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardData]) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setAvatar(userData.avatar);
+    userId = userData._id;
+    newCardSection = new Section(
       {
-        items: initialCards,
-        renderer: createCard,
+        items: cardData,
+        renderer: (data) => {
+          const newCard = createCard(data);
+          newCardSection.addItem(newCard);
+        },
       },
-
       selectors.cardSection
     );
-    section.renderItems();
+    newCardSection.renderItems();
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch(console.error);

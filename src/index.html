@@ -75,7 +75,7 @@
             id="owner-description"
             type="text"
             name="about"
-            placeholder="Description"
+            placeholder="About"
             minlength="2"
             maxlength="200"
             required
@@ -125,31 +125,34 @@
         <p class="modal__image-title"></p>
       </div>
     </div>
-    <div class="image-popup modal" id="image-popup__container">
+    <!-- <div class="image-popup modal" id="image-popup__container">
       <div class="modal__container image-popup__container-two">
         <img class="image-popup__image" src="" alt="" />
-        <img
+        <button class="modal__close" type="button"></button> -->
+
+        <!-- <img
           class="image-popup__close-icon"
           src="<%=require('./images/close.svg')%>"
-        />
-        <h2 class="image-popup__title"></h2>
-      </div>
-    </div>
-    <div class="confirm-popup modal">
-      <div class="modal__container confirm-popup__container-two">
-        <form class="modal__form confirm-popup__form">
-          <h2 class="confirm-popup__title">Are you sure?</h2>
-          <button type="submit" class="modal__button confirm-popup__button">
+        /> -->
+    <!-- <h2 class="image-popup__title"></h2>
+      </div> -->
+    <!-- </div> -->
+   
+    <div class="delete__popup modal">
+      <div class="modal__container delete__popup-container">
+        <form class="modal__form delete__popup-form">
+          <h2 class="delete__popup-title">Are you sure?</h2>
+          <button type="submit" class="modal__button delete__popup-button">
             Yes
           </button>
-          <img class="close-icon confirm-popup__close-icon" />
+          <img class="close-icon delete__popup-close-icon" />
         </form>
       </div>
     </div>
     <div class="change-avi-img modal">
       <div class="modal__container">
         <form class="modal__form" id="change-avi-form" novalidate>
-          <h2 class="modal__heading">Change profile picture</h2>
+          <h2 class="modal__heading">Change Profile Picture</h2>
           <input
             id="change-avi-form__link"
             type="url"
@@ -160,10 +163,7 @@
           />
           <span class="modal__error" id="change-avi-form__link-error"></span>
           <button type="submit" class="modal__button"></button>
-          <img
-            class="close-icon change-avi-form__close-icon"
-            src="<%=require('./images/close.svg')%>"
-          />
+          <button class="modal__close" type="button"></button>
         </form>
       </div>
     </div>

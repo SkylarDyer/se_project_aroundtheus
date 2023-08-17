@@ -17,6 +17,12 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -30,9 +36,7 @@ export default class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
-  getAPIInfo() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
-  }
+
   updateProfileInfo(inputValues) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",

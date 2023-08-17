@@ -16,15 +16,15 @@ export default class UserInfo {
 
   setUserInfo(inputValues) {
     this._nameElement.textContent = inputValues.name;
-    this._descriptionElement.textContent = inputValues.about;
+    this._descriptionElement.textContent = inputValues.description;
   }
 
-  setAvatar(inputValues) {
+  setAvatar(avatar) {
     // this._userAvi.textContent = inputValues.name;
-    this._userAvi.src = inputValues.link;
+    this._userAvi.src = avatar;
   }
 
-  getAvatar() {
-    return this._userAvi.src;
-  }
+  // getAvatar() {
+  //   return this._userAvi.src;
+  // }
 }
