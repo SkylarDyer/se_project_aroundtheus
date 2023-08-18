@@ -3,13 +3,18 @@
 /* -------------------------------------------------------------------------- */
 
 import "./index.css";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
-import Card from "../components/Card";
+import PopupWithImage from "../components/PopupWithImage";
 
+import PopupWithForm from "../components/PopupWithForm";
 import FormValidator from "../components/FormValidator";
 
+import UserInfo from "../components/UserInfo";
 import Section from "../components/Section";
+import Card from "../components/Card";
 
+import Api from "../components/Api";
 import {
   selectors,
   formValidatorConfig,
@@ -22,25 +27,14 @@ import {
   addCardButton,
 } from "../utils/constants";
 
-import PopupWithImage from "../components/PopupWithImage";
-
-import PopupWithForm from "../components/PopupWithForm";
-
-import PopupWithConfirmation from "../components/PopupWithConfirmation";
-
-import UserInfo from "../components/UserInfo";
-
-import Api from "../components/Api";
-
 /* -------------------------------------------------------------------------- */
 /*                                   CONSTS                                   */
 /* -------------------------------------------------------------------------- */
 const avatarPopup = new PopupWithForm(selectors.changeAviPopup, handleAviPopup);
 const profileEditButton = document.querySelector(".profile__edit-button");
-
-const deleteCardPopup = new PopupWithConfirmation(".delete__popup");
+const deleteCardPopup = new PopupWithConfirmation("#modal__delete");
 const previewImagePopup = new PopupWithImage(
-  ".modal__image-preview",
+  selectors.previewModal,
   handleCardClick
 );
 const profileEditPopup = new PopupWithForm(
@@ -61,24 +55,22 @@ const userInfo = new UserInfo({
 /* -------------------------------------------------------------------------- */
 /*                                  FUNCTIONS & HANDLERS                      */
 /* -------------------------------------------------------------------------- */
-
-let userId;
 let newCardSection;
-// const imagePopup = new PopupWithImage(selectors.previewModal);
-// imagePopup.setEventListeners();
+let userId;
 
 function createCard(cardData) {
   const card = new Card(
     cardData.name,
     cardData.link,
-    cardData.likes,
+    cardData.isLiked,
     cardData._id,
     userId,
-    cardSelector,
     handleCardClick,
     handleDeleteClick,
-    handleLikeClick
+    handleLikeClick,
+    cardSelector
   );
+
   return card.getView();
 }
 function handleProfileEditSubmit(inputValues) {
@@ -132,11 +124,12 @@ function handleDeleteClick(cardId) {
   deleteCardPopup.setSubmitAction(() => {
     deleteCardPopup.renderLoading(true);
     api
-      .deleteUserCard(cardId)
+      .deleteCard(cardId)
       .then(() => {
         cardId.deleteCard();
         deleteCardPopup.close();
       })
+
       .catch((err) => {
         console.log(err);
       })
@@ -145,6 +138,7 @@ function handleDeleteClick(cardId) {
       });
   });
 }
+
 function handleProfileEditClick() {
   const user = userInfo.getUserInfo();
   userNameInput.value = user.name;
@@ -153,11 +147,11 @@ function handleProfileEditClick() {
 }
 
 function handleLikeClick(card) {
-  if (card.isLiked()) {
+  if (card.isLiked) {
     api
       .removeCardLikes(card.cardId)
       .then((res) => {
-        card.updateLikes(res.likes);
+        card.updateLikes(res.isLiked);
       })
       .catch((err) => {
         console.log(err);
@@ -166,7 +160,7 @@ function handleLikeClick(card) {
     api
       .addCardLikes(card.cardId)
       .then((res) => {
-        card.updateLikes(res.likes);
+        card.updateLikes(res.isLiked);
       })
       .catch((err) => {
         console.log(err);
@@ -230,7 +224,7 @@ const api = new Api({
 });
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardData]) => {
-    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserInfo(userData);
     userInfo.setAvatar(userData.avatar);
     userId = userData._id;
     newCardSection = new Section(

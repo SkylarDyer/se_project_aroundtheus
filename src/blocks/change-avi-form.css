@@ -1,5 +1,4 @@
-
-/* .change-avi-form__title {
+.change-avi-form__title {
   margin-bottom: 54px;
   margin-top: 34px;
   font-family: "Inter", Arial, sans-serif;
@@ -8,8 +7,19 @@
   font-size: 24px;
   line-height: 29px;
   color: #fff;
-} */
-/* 
+}
+.change-avi-form {
+  background-color: #fff;
+  position: relative;
+  margin: auto;
+  max-width: 430px;
+  max-height: 272px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}
+
 .change-avi-form__link {
   margin-bottom: 48px;
 }
@@ -25,4 +35,4 @@
   top: -40px;
   right: -80px;
   cursor: pointer;
-} */
+}
