@@ -94,7 +94,7 @@ function handleCardAddClick(inputValues) {
     .addNewCard(inputValues)
     .then((cardData) => {
       const addCard = createCard(cardData);
-      newCardSection.addItem(addCard.getView());
+      newCardSection.addItem(addCard);
       addCardPopup.close();
     })
     .catch((err) => {
@@ -108,8 +108,8 @@ function handleAviPopup(inputValues) {
   avatarPopup.renderLoading(true);
   api
     .updateProfileAvatar(inputValues.avatar)
-    .then((res) => {
-      userInfo.setAvatar(res);
+    .then(() => {
+      userInfo.setAvatar(inputValues.avatar);
       avatarPopup.close();
     })
     .catch((err) => {
@@ -119,14 +119,14 @@ function handleAviPopup(inputValues) {
       avatarPopup.renderLoading(false);
     });
 }
-function handleDeleteClick(cardId) {
+function handleDeleteClick(card) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     deleteCardPopup.renderLoading(true);
     api
-      .deleteCard(cardId)
+      .deleteCard(card.cardId)
       .then(() => {
-        cardId.deleteCard();
+        card.handleDeleteCard();
         deleteCardPopup.close();
       })
 

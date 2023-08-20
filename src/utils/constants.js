@@ -31,7 +31,7 @@ export const selectors = {
   previewModal: "#modal-preview",
   cardPopupSelector: "#card-edit-modal",
   profilePopupSelector: "#profile-edit-modal",
-  changeAviPopup: ".change-avi-img",
+  changeAviPopup: "#change-avi-img",
 };
 
 export const formValidatorConfig = {
