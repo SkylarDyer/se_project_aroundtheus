@@ -55,9 +55,9 @@ class FormValidator {
   }
 
   enableValidation() {
-    // this._form.addEventListener("reset", () => {
-    //   this.toggleButtonState();
-    // });
+    this._form.addEventListener("reset", () => {
+      this.toggleButtonState();
+    });
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
     });

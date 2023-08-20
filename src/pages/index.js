@@ -211,9 +211,6 @@ profileEditPopup.setEventListeners();
 deleteCardPopup.setEventListeners();
 addCardPopup.setEventListeners();
 avatarPopup.setEventListeners();
-// avatarPopup.close();
-// profileEditPopup.close();
-// addCardPopup.close();
 /* -------------------------------------------------------------------------- */
 /*                                     API                                    */
 /* -------------------------------------------------------------------------- */

@@ -20,11 +20,6 @@ export default class UserInfo {
   }
 
   setAvatar(avatar) {
-    // this._userAvi.textContent = inputValues.name;
     this._userAvi.src = avatar;
   }
-
-  // getAvatar() {
-  //   return this._userAvi.src;
-  // }
 }
