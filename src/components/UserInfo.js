@@ -10,13 +10,13 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this._nameElement.textContent,
-      description: this._descriptionElement.textContent,
+      about: this._descriptionElement.textContent,
     };
   }
 
   setUserInfo(inputValues) {
     this._nameElement.textContent = inputValues.name;
-    this._descriptionElement.textContent = inputValues.description;
+    this._descriptionElement.textContent = inputValues.about;
   }
 
   setAvatar(avatar) {

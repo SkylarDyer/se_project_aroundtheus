@@ -17,7 +17,7 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
-    document.addEventListener("keyup", this._handleEscClose.bind(this));
+    document.addEventListener("keyup", this._handleEscClose);
   }
 
   close() {
@@ -26,7 +26,10 @@ export default class Popup {
   }
 
   _handleClickOutside = (evt) => {
-    if (evt.target === evt.currentTarget) {
+    if (
+      evt.target.classList.contains("modal_opened") ||
+      evt.target.classList.contains("modal__close")
+    ) {
       this.close();
     }
   };

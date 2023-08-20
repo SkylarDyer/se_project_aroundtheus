@@ -75,6 +75,7 @@
 }
 .card__counter {
   margin: 6px auto 0;
+  color: green;
   font-size: 14px;
 }
 .card__button-counter {

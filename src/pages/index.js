@@ -63,6 +63,7 @@ function createCard(cardData) {
     cardData.name,
     cardData.link,
     cardData.isLiked,
+    cardData.likes,
     cardData._id,
     userId,
     handleCardClick,
@@ -87,6 +88,7 @@ function handleProfileEditSubmit(inputValues) {
     .finally(() => {
       profileEditPopup.renderLoading(false, "Save");
     });
+  console.log(inputValues);
 }
 function handleCardAddClick(inputValues) {
   addCardPopup.renderLoading(true);
