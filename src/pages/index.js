@@ -1,19 +1,14 @@
 /* -------------------------------------------------------------------------- */
 /*                                   IMPORTS                                  */
 /* -------------------------------------------------------------------------- */
-
 import "./index.css";
 import PopupWithConfirmation from "../components/PopupWithConfirmation";
-
 import PopupWithImage from "../components/PopupWithImage";
-
 import PopupWithForm from "../components/PopupWithForm";
 import FormValidator from "../components/FormValidator";
-
 import UserInfo from "../components/UserInfo";
 import Section from "../components/Section";
 import Card from "../components/Card";
-
 import Api from "../components/Api";
 import {
   selectors,
@@ -26,7 +21,6 @@ import {
   aviEditButton,
   addCardButton,
 } from "../utils/constants";
-
 /* -------------------------------------------------------------------------- */
 /*                                   CONSTS                                   */
 /* -------------------------------------------------------------------------- */
@@ -51,13 +45,11 @@ const userInfo = new UserInfo({
   userDescriptionSelector: ".profile__description",
   userAvi: ".profile__image",
 });
-
 /* -------------------------------------------------------------------------- */
 /*                                  FUNCTIONS & HANDLERS                      */
 /* -------------------------------------------------------------------------- */
 let newCardSection;
 let userId;
-
 function createCard(cardData) {
   const card = new Card(
     cardData.name,
@@ -71,7 +63,6 @@ function createCard(cardData) {
     handleLikeClick,
     cardSelector
   );
-
   return card.getView();
 }
 function handleProfileEditSubmit(inputValues) {
@@ -88,7 +79,6 @@ function handleProfileEditSubmit(inputValues) {
     .finally(() => {
       profileEditPopup.renderLoading(false, "Save");
     });
-  console.log(inputValues);
 }
 function handleCardAddClick(inputValues) {
   addCardPopup.renderLoading(true);
@@ -118,7 +108,7 @@ function handleAviPopup(inputValues) {
       console.log(err);
     })
     .finally(() => {
-      avatarPopup.renderLoading(false);
+      avatarPopup.renderLoading(false, "Save");
     });
 }
 function handleDeleteClick(card) {
@@ -140,14 +130,12 @@ function handleDeleteClick(card) {
       });
   });
 }
-
 function handleProfileEditClick() {
   const user = userInfo.getUserInfo();
   userNameInput.value = user.name;
   userDescriptionInput.value = user.about;
   profileEditPopup.open();
 }
-
 function handleLikeClick(card) {
   if (card.isLiked) {
     api
@@ -169,11 +157,9 @@ function handleLikeClick(card) {
       });
   }
 }
-
 function handleCardClick(cardData) {
   previewImagePopup.open(cardData);
 }
-
 /* -------------------------------------------------------------------------- */
 /*                               FORM VALIDATION                              */
 /* -------------------------------------------------------------------------- */
@@ -189,12 +175,11 @@ const cardAddFormValidator = new FormValidator(
 editProfileFormValidator.enableValidation();
 cardAddFormValidator.enableValidation();
 aviFormValidator.enableValidation();
-
 /* -------------------------------------------------------------------------- */
 /*                               EVENT LISTENERS                              */
 /* -------------------------------------------------------------------------- */
 aviEditButton.addEventListener("click", () => {
-  aviFormValidator.resetValidation;
+  aviFormValidator.toggleButtonState();
   avatarPopup.open();
 });
 profileEditButton.addEventListener("click", () => {
