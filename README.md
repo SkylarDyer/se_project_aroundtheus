@@ -19,7 +19,7 @@ For Around The U.S., I sourced all images and vector designs from the Figma page
 
 **GitHub**
 
-The link to the finished project on [GitHub] (https://skylarlol.github.io/se_project_aroundtheus/)
+The link to the finished project on [GitHub] (https://skylardyer.github.io/se_project_aroundtheus/)
 
 **JavaScript**
 During this project, advanced javascript such as introducing class methods and asynchronous programming functions were implemented throughout all aspects of the website in order to add smooth and consistent responses between user interactions and site functionality.
